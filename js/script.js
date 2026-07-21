@@ -102,7 +102,7 @@ try {
     for(let item = 0; item < items.length; item++) {
         const itemAmount = items[item].querySelector(".expense-amount")
 
-        let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+        let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".")
 
         value = parseFloat(value)
 
@@ -115,7 +115,15 @@ try {
 
     }
 
-    expenseTotal.textContent = total
+    const symbolBR = document.createElement("small")
+    symbolBR.textContent = "R$"
+
+    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+
+    expenseTotal.innerHTML = ""
+    expenseTotal.append(symbolBR,total)
+
+
 } catch (error) {
     console.log(error)
     alert("Não foi possível atualizar o total.")
