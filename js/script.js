@@ -59,13 +59,16 @@ try {
     const expenseName = document.createElement("strong")
     expenseName.textContent = newExpense.expense
 
-    const expenseCategory = document.createElement("spam")
+    const expenseCategory = document.createElement("span")
     expenseCategory.textContent = newExpense.category_name
 
     expenseInfo.append(expenseName,expenseCategory)
+    
+    const expenseAmount = document.createElement("span")
+    expenseAmount.classList.add("expense-amount")
+    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace("R$", "")}`
 
-
-    expenseItem.append(expenseIcon,expenseInfo)
+    expenseItem.append(expenseIcon,expenseInfo,expenseAmount)
     expenseList.append(expenseItem)
 } catch (error) {
     alert("Não foi possível atualizar as despesas.")
