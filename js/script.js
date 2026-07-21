@@ -8,6 +8,7 @@ const form = document.querySelector("form")
 // Elementos da lista
 
 const expenseList = document.querySelector("ul")
+const expenseQuantity = document.querySelector("aside header p span")
 
 amount.oninput = () => {
     let value = amount.value.replace(/\D/g, "")
@@ -33,6 +34,7 @@ form.onsubmit = (event) => {
     event.preventDefault()
 
     const newExpense = {
+
 id: new Date().getTime(),
 expense: expense.value,
 category_id: category.value,
@@ -68,11 +70,36 @@ try {
     expenseAmount.classList.add("expense-amount")
     expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace("R$", "")}`
 
-    expenseItem.append(expenseIcon,expenseInfo,expenseAmount)
+    // Cria item de remover
+
+    const removeIcon = document.createElement("img")
+    removeIcon.classList.add("remove-icon")
+    removeIcon.setAttribute("src", "img/remove.svg")
+    removeIcon.setAttribute("alt","remover")
+
+    expenseItem.append(expenseIcon,expenseInfo,expenseAmount,removeIcon)
     expenseList.append(expenseItem)
+
+    updateTotals()
 } catch (error) {
     alert("Não foi possível atualizar as despesas.")
     console.log(error)
 }
+
+}
+
+
+
+function updateTotals() {
+try {
+    const items = expenseList.children
+    
+    expenseQuantity.textContent = `${items.length} ${items.length > 1 ? "despesas" : "despesa"}`
+
+} catch (error) {
+    console.log(error)
+    alert("Não foi possível atualizar o total.")
+}
+
 
 }
