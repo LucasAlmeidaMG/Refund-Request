@@ -36,7 +36,17 @@ category_name: category.options[category.selectedIndex].text,
 amount: amount.value,
 created_at: new Date(),
 
-    }
+}
+expenseAdd(newExpense)
+}
 
-    console.log(newExpense)
+function expenseAdd(newExpense) {
+try {
+    const expenseItem = document.createElement("li")
+    expenseItem.classList.add("expense")
+} catch (error) {
+    alert("Não foi possível atualizar as despesas.")
+    console.log(error)
+}
+
 }
