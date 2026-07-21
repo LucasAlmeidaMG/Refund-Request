@@ -1,6 +1,9 @@
 // ELementos do formulário
 
 const amount = document.getElementById("amount")
+const expense = document.getElementById("expense")
+const category = document.getElementById("category")
+const form = document.querySelector("form")
 
 amount.oninput = () => {
     let value = amount.value.replace(/\D/g, "")
@@ -19,4 +22,9 @@ currency: "BRL",
 })
  return value
 
+}
+
+form.onsubmit = (event) => {
+
+    event.preventDefault()
 }
