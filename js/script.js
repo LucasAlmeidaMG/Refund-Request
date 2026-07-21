@@ -9,6 +9,7 @@ const form = document.querySelector("form")
 
 const expenseList = document.querySelector("ul")
 const expenseQuantity = document.querySelector("aside header p span")
+const expenseTotal = document.querySelector("aside header h2")
 
 amount.oninput = () => {
     let value = amount.value.replace(/\D/g, "")
@@ -96,6 +97,25 @@ try {
     
     expenseQuantity.textContent = `${items.length} ${items.length > 1 ? "despesas" : "despesa"}`
 
+    let total = 0
+
+    for(let item = 0; item < items.length; item++) {
+        const itemAmount = items[item].querySelector(".expense-amount")
+
+        let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+
+        value = parseFloat(value)
+
+        if(isNaN(value)) {
+            return alert("Não foi possível calcular o total. O valor não é um número.")
+        }
+
+        total += Number(value)
+
+
+    }
+
+    expenseTotal.textContent = total
 } catch (error) {
     console.log(error)
     alert("Não foi possível atualizar o total.")
