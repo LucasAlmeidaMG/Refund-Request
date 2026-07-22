@@ -47,7 +47,7 @@ REFUND-REQUEST/
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone <https://github.com/LucasAlmeidaMG/Refund-Request.git>
    ```
 2. Acesse a pasta do projeto:
    ```bash
